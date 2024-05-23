@@ -4,9 +4,9 @@ Django command to wait for the database to be available
 
 import time
 
-from psycopg2 import OperationalError as Psycopg2OpError
+# from psycopg2 import OperationalError as Psycopg2OpError
 
-from django.db.utils import OperationalError
+# from django.db.utils import OperationalError
 from django.core.management.base import BaseCommand
 
 
@@ -23,7 +23,9 @@ class Command(BaseCommand):
                 db_up = True
             except Exception as err:
                 print()
-                self.stdout.write(f"Database unavailable, waiting for 1 second{err}")
+                self.stdout.write(
+                    f"Database unavailable, waiting for 1 second, Error: {err}"
+                )
                 time.sleep(1)
 
         self.stdout.write(self.style.SUCCESS("Database available!"))
