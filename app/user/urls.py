@@ -12,3 +12,4 @@ urlpatterns = [
     path("token/", views.CreateTokenView.as_view(), name="token"),
     path("me/", views.ManagerUserView.as_view(), name="me"),
 ]
+one = 1
