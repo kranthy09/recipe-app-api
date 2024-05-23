@@ -2,9 +2,8 @@
 urls for user API.
 """
 
-from django.urls import path, include
-
 from user import views
+from django.urls import path
 
 app_name = "user"
 
