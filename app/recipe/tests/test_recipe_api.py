@@ -213,7 +213,8 @@ class PrivateRecipeAPITest(TestCase):
         recipes = Recipe.objects.filter(user=self.user)
         self.assertEqual(recipes.count(), 1)
         recipe = recipes[0]
-        print(recipe.tags)
+        print("recipe name:", recipe)
+        print("recipe.tags: ", recipe.tags)
         self.assertEqual(recipe.tags.count(), 2)
         for tag in payload["tags"]:
             exists = recipe.tags.filter(name=tag["name"], user=self.user).exists()
