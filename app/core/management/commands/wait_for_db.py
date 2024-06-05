@@ -22,7 +22,6 @@ class Command(BaseCommand):
                 self.check(databases=["default"])
                 db_up = True
             except Exception as err:
-                print()
                 self.stdout.write(
                     f"Database unavailable, waiting for 1 second, Error: {err}"
                 )

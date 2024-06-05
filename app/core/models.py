@@ -25,7 +25,9 @@ class UserManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email, password, **extra_fields):
+    def create_superuser(self, email, password):
+        """Creates new superuser"""
+
         user = self.create_user(email, password)
         user.is_staff = True
         user.is_superuser = True
@@ -59,6 +61,20 @@ class Recipe(models.Model):
     time_minutes = models.IntegerField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
     link = models.CharField(max_length=255, blank=True)
+    tags = models.ManyToManyField("Tag", blank=True)
 
     def __str__(self):
         return self.title
+
+
+class Tag(models.Model):
+    """Taf for filtering recipes."""
+
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
